@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When to Use a Temporary Email: Your Ultimate Guide</title>
+    <meta name="description" content="Discover the essential scenarios for using a temporary email address. Protect your privacy, avoid spam, and secure your digital life with Trashmail.in.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://trashmail.in" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #793ef1;
+            --primary-dark: #44189a;
+            --cta: #ff4d12;
+            --text: #212121;
+            --bg: #f9f9f9;
+            --dark-block: #192132;
+            --text-on-dark: #ffffff;
+            --surface-glass: rgba(255, 255, 255, 0.7);
+            --border-glass: rgba(121, 62, 241, 0.1);
+            --clay-shadow: 20px 20px 60px #d1d1d1, -20px -20px 60px #ffffff;
+            --clay-inset: inset 6px 6px 12px #d1d1d1, inset -6px -6px 12px #ffffff;
+        }
+        /* RESET & MANDATORY OVERRIDES */
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        header, footer, nav, .nav, .footer { display: none !important; }
+        /* NOISE TEXTURE */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        /* TEXT SHIMMER REVEAL */
+        .text-shimmer {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--cta) 50%, var(--primary) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 5s linear infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+        /* SOFT CLAY MORPHISM */
+        .clay-card {
+            background: var(--bg);
+            border-radius: 2rem;
+            box-shadow: var(--clay-shadow);
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .clay-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 25px 25px 70px #c4c4c4, -25px -25px 70px #ffffff;
+        }
+        .clay-btn {
+            background: var(--bg);
+            color: var(--primary);
+            border-radius: 1.5rem;
+            box-shadow: 8px 8px 16px #d1d1d1, -8px -8px 16px #ffffff;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .clay-btn:active {
+            transform: scale(0.95);
+            box-shadow: inset 4px 4px 8px #d1d1d1, inset -4px -4px 8px #ffffff;
+        }
+        .clay-btn.primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 10px 10px 20px rgba(121, 62, 241, 0.3), -10px -10px 20px rgba(255, 255, 255, 0.8);
+        }
+        
+        .clay-btn.cta {
+            background: var(--cta);
+            color: white;
+            box-shadow: 10px 10px 30px rgba(255, 77, 18, 0.3), -10px -10px 30px rgba(255, 255, 255, 0.8);
+        }
+        .clay-input {
+            background: var(--bg);
+            border-radius: 1rem;
+            box-shadow: var(--clay-inset);
+            border: none;
+            padding: 1rem;
+            width: 100%;
+            outline: none;
+            color: var(--primary-dark);
+        }
+        /* SCROLL ANIMATIONS */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* MARQUEE */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        /* LIVE BORDER GRADIENT TRICK */
+        .live-border {
+            position: relative;
+            background: var(--bg);
+            border-radius: 2rem;
+            z-index: 1;
+        }
+        .live-border::before {
+            content: "";
+            position: absolute;
+            inset: -4px;
+            z-index: -1;
+            background: linear-gradient(45deg, var(--primary), var(--cta), var(--primary-dark));
+            background-size: 200% 200%;
+            border-radius: 2.2rem;
+            animation: gradientMove 3s ease infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .live-border:hover::before {
+            opacity: 1;
+        }
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* FAQ ACCORDION */
+        details > summary {
+            list-style: none;
+            cursor: pointer;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: sweep .5s ease-in-out;
+        }
+        @keyframes sweep {
+            0%    {opacity: 0; transform: translateY(-10px)}
+            100%  {opacity: 1; transform: translateY(0)}
+        }
+        
+        /* WIDGET STYLES */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: var(--cta);
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: #e0e0e0;
+            border-radius: 5px;
+            box-shadow: inset 2px 2px 5px #d1d1d1;
+        }
+        /* SHAPES */
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+            animation: float 10s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -50px); }
+        }
+    </style>
+<script type="text/javascript" class="flasher-js">(function() {    var rootScript = 'https://cdn.jsdelivr.net/npm/@flasher/flasher@1.3.2/dist/flasher.min.js';    var 
+[]
+ = {};    var options = mergeOptions([], 
+[]
+);    function mergeOptions(first, second) {        return {            context: merge(first.context || {}, second.context || {}),            envelopes: merge(first.envelopes || [], second.envelopes || []),
+            options: merge(first.options || {}, second.options || {}),
+            scripts: merge(first.scripts || [], second.scripts || []),
+            styles: merge(first.styles || [], second.styles || []),
+        };    }    function merge(first, second) {        if (Array.isArray(first) && Array.isArray(second)) {            return first.concat(second).filter(function(item, index, array) {                return array.indexOf(item) === index;            });        }        return Object.assign({}, first, second);    }    function renderOptions(options) {        if(!window.hasOwnProperty('flasher')) {            console.error('Flasher is not loaded');            return;        }        requestAnimationFrame(function () {            window.flasher.render(options);        });    }    function render(options) {        if ('loading' !== document.readyState) {            renderOptions(options);            return;
+        }        document.addEventListener('DOMContentLoaded', function() {            renderOptions(options);        });    }    if (1 === document.querySelectorAll('script.flasher-js').length) {        document.addEventListener('flasher:render', function (event) {            render(event.detail);        });            }    if (window.hasOwnProperty('flasher') || !rootScript || document.querySelector('script[src="' + rootScript + '"]')) {        render(options);    } else {        var tag = document.createElement('script');        tag.setAttribute('src', rootScript);        tag.setAttribute('type', 'text/javascript');        tag.onload = function () {            render(options);        };        document.head.appendChild(tag);    }})();</script>
+
+<style>
+/* 1. RESET & LAYOUT ENFORCEMENT */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: transparent;
+}
+
+/* Force Wrapper to Full Width */
+.glassgen-embed-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* 2. PREMIUM EASING VARIABLES */
+:root {
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.1); /* Bouncy */
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);          /* Smooth */
+  --ease-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);  /* Snappy */
+}
+
+/* 3. VISIBILITY FAIL-SAFE (Anti-White Page) */
+/* Elements are visible by default. JS adds '.glassgen-hidden' to prep animation. */
+.reveal-on-scroll, .reveal, .reveal-up, .fade-in-up, .spatial-card, .brutal-border {
+  opacity: 1; /* Default to visible if JS fails */
+  transform: translateY(0) scale(1);
+  transition: opacity 1s var(--ease-expo), transform 1s var(--ease-expo), filter 1s var(--ease-expo);
+  will-change: opacity, transform;
+}
+
+/* JS-Active Hidden State */
+.glassgen-hidden {
+  opacity: 0 !important;
+  transform: translateY(40px) scale(0.98) !important;
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+/* JS-Active Revealed State */
+.glassgen-revealed {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+  filter: blur(0);
+  pointer-events: auto;
+}
+
+/* 4. LAYOUT & SPACING UTILITIES */
+section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  section {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+.spacer-y { margin-top: 2rem; margin-bottom: 2rem; }
+.spacer-x { margin-left: 1rem; margin-right: 1rem; }
+
+/* 5. INTERACTIVE STATES */
+button, a.btn, .cta-btn, .spatial-btn, .brutal-btn {
+  transition: all 0.4s var(--ease-expo);
+}
+button:hover, a.btn:hover, .cta-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  filter: brightness(1.1);
+}
+button:active, a.btn:active {
+  transform: scale(0.96);
+}
+
+/* 6. TYPOGRAPHY & READABILITY */
+p {
+  max-width: 65ch; /* Optimal reading line length */
+  line-height: 1.7;
+}
+</style>
+<script>
+// --- GLASSGEN RUNTIME ANIMATOR ---
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Setup Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Add staggered delay based on child index if possible
+        const delay = entry.target.getAttribute('data-delay') || 0;
+        setTimeout(() => {
+            entry.target.classList.remove('glassgen-hidden');
+            entry.target.classList.add('glassgen-revealed');
+        }, delay);
+        observer.unobserve(entry.target); 
+      }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+  // 2. Target Elements
+  const selectors = '.reveal-on-scroll, .reveal, .reveal-up, .spatial-card, .brutal-border, .soft-clay, section > h2, section > p';
+  const elements = document.querySelectorAll(selectors);
+  
+  // 3. Initialize (Hide off-screen elements)
+  elements.forEach((el, index) => {
+    const rect = el.getBoundingClientRect();
+    const isVisible = (rect.top < window.innerHeight);
+
+    if (!isVisible) {
+        el.classList.add('glassgen-hidden');
+        // Simple auto-stagger logic for grids
+        if (el.parentElement.classList.contains('grid')) {
+            el.setAttribute('data-delay', (index % 3) * 100);
+        }
+    }
+    observer.observe(el);
+  });
+});
+</script>
+</head>
+<body class="antialiased selection:bg-purple-200 selection:text-purple-900"><section class="min-h-screen flex flex-col justify-center relative px-6 py-20 overflow-hidden"><div class="blob bg-purple-300 w-96 h-96 rounded-full top-0 left-0 mix-blend-multiply"> </div><div class="blob bg-orange-200 w-96 h-96 rounded-full bottom-0 right-0 mix-blend-multiply animation-delay-2000"> </div><div class="max-w-7xl mx-auto w-full z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"><div class="lg:col-span-7 reveal-on-scroll"><p><span class="inline-block py-2 px-4 rounded-full bg-white text-xs font-bold tracking-widest text-purple-600 mb-6 shadow-sm border border-purple-100">DIGITAL PRIVACY ESSENTIALS</span></p><h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter leading-[0.9] mb-8 text-shimmer">When to Use a <br>Temporary Email</h1><p class="text-xl md:text-2xl text-gray-600 mb-10 max-w-2xl leading-relaxed">Your primary email is a magnet for spam, scams, and data breaches. Discover the critical situations where a temporary email address is your best defense. <span class="font-bold text-gray-900">It's time to protect your inbox.</span></p><div class="flex flex-wrap gap-6"><a class="clay-btn primary px-8 py-4 text-lg" target="_blank" rel="noopener noreferrer" href="https://trashmail.in">Get Your Free Temp Email <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a><a class="clay-btn px-8 py-4 text-lg" href="#analysis">Learn the Best Practices</a></div></div><div class="lg:col-span-5 relative reveal-on-scroll" style="transition-delay:0.2s;"><div class="clay-card p-8 rotate-3 hover:rotate-0 transition-transform duration-500"><div class="flex justify-between items-center mb-6"><div class="w-12 h-12 rounded-full bg-blue-200 animate-pulse flex items-center justify-center text-3xl">📧</div><div class="h-4 w-24 bg-blue-200 rounded animate-pulse"> </div></div><div class="space-y-4"><div class="h-4 w-full bg-blue-200 rounded animate-pulse"> </div><div class="h-4 w-3/4 bg-blue-200 rounded animate-pulse"> </div><div class="h-4 w-5/6 bg-blue-200 rounded animate-pulse"> </div></div><div class="mt-8 pt-6 border-t border-gray-100"><p class="text-xs text-green-500 font-bold uppercase tracking-wide">Incoming Email: Newsletter Subscription</p><p class="text-sm text-gray-400 mt-1">Received by Trashmail.in, your real inbox is clean.</p></div></div></div></div></section><section class="py-24 px-6 relative"><div class="max-w-6xl mx-auto"><div class="flex flex-col md:flex-row gap-16 items-start"><div class="md:w-1/3 reveal-on-scroll"><h2 class="text-4xl font-bold text-[#192132] mb-6">Why Your Real Email is a Liability.</h2><div class="h-2 w-24 bg-[#ff4d12] rounded-full mb-6"> </div><p class="text-gray-600 leading-relaxed">Every time you share your primary email, you expose yourself to risks. From relentless spam to targeted phishing and potential data breaches, your inbox is under constant threat.</p></div><div class="md:w-2/3 reveal-on-scroll pt-12 md:pt-0"><p class="text-xl font-light text-gray-800 mb-8">Over <strong>8 billion records</strong> were exposed in recent data breaches. Using your main email for every casual signup, freebie, or public Wi-Fi connection significantly increases your chances of becoming a victim.</p><p class="text-gray-600 mb-8">The real question isn't *if* you need a temporary email, but <span class="italic">"when should you use one?"</span> The answer: more often than you think.</p><div class="clay-card p-6 inline-block"><span class="text-3xl font-bold text-[#793ef1]">85%</span> <span class="text-sm text-gray-500 ml-2">of users report an increase in unwanted emails after online sign-ups.</span></div></div></div></div></section><section class="py-24 px-6 bg-[#f1f1f1]" id="calculator"><div class="max-w-4xl mx-auto reveal-on-scroll"><div class="clay-card p-8 md:p-12 live-border"><div class="text-center mb-10"><h3 class="text-3xl font-bold mb-2">Your Spam & Privacy Risk Evaluator</h3><p class="text-gray-500">Discover how often your real email is exposed to unwanted attention.</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-12"><div class="space-y-8"><div><p><label class="block text-sm font-bold text-gray-700 mb-4">Daily Online Interactions</label> <input class="w-full" type="range" id="hoursInput" min="1" max="16" value="6"></p><div class="flex justify-between text-xs text-gray-400 mt-2"><span>1 interaction</span> <span class="text-purple-600 font-bold" id="hoursVal">6hrs</span> <span>16+ interactions</span></div></div><div><p><label class="block text-sm font-bold text-gray-700 mb-4">New Sign-ups / Month</label> <input class="w-full" type="range" id="signupsInput" min="0" max="50" value="5"></p><div class="flex justify-between text-xs text-gray-400 mt-2"><span>0</span> <span class="text-purple-600 font-bold" id="signupsVal">5</span> <span>50+</span></div></div></div><div class="flex flex-col items-center justify-center bg-gray-50 rounded-3xl p-6 border border-gray-200"><div class="text-sm text-gray-400 uppercase tracking-widest mb-2">Exposure Risk Level</div><div class="text-6xl font-extrabold text-[#ff4d12]" id="riskScore">42%</div><p class="text-center text-sm text-gray-600 mt-4 px-4" id="riskText">Moderate risk. Using a temporary email significantly reduces this.</p></div></div></div></div></section><section class="py-24 px-6"><div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center"><div class="order-2 md:order-1 reveal-on-scroll"><div class="aspect-square rounded-[3rem] overflow-hidden relative shadow-2xl transform rotate-3 hover:rotate-0 transition-all duration-700"><div class="absolute inset-0 bg-gradient-to-br from-[#793ef1] to-[#44189a]"> </div><div class="absolute inset-0 flex items-center justify-center"><svg class="w-48 h-48 text-white opacity-20" fill="currentColor" viewbox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg></div><div class="absolute bottom-10 left-10 right-10 p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20"><div class="flex items-center gap-3"><div class="w-3 h-3 bg-green-400 rounded-full animate-pulse"> </div><p><span class="text-white font-mono text-sm">Privacy: Activated</span></p></div></div></div></div><div class="order-1 md:order-2 reveal-on-scroll"><h2 class="text-5xl font-bold mb-8 text-[#192132]">Unlock Your Digital Freedom with Trashmail.in.</h2><p class="text-lg text-gray-600 mb-6"><strong>Trashmail.in</strong> provides instant, disposable email addresses that protect your privacy. Use it for any online interaction where you don't want to reveal your real identity.</p><p class="text-lg text-gray-600 mb-8">It's perfect for quickly receiving verification codes, download links, or one-time communications without cluttering your main inbox or risking your data.</p><ul class="space-y-4 mb-10"><li class="flex items-center text-gray-700"><span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3">✓</span> No Personal Details Required</li><li class="flex items-center text-gray-700"><span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3">✓</span> Instant Auto-Destruction</li><li class="flex items-center text-gray-700"><span class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3">✓</span> 100% Free Forever</li></ul><p><a class="clay-btn primary px-8 py-3" target="_blank" rel="noopener noreferrer" href="https://trashmail.in">Get Your Anonymous Email</a></p></div></div></section><section class="py-24 px-6 bg-white relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-30"> </div><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-bold text-center mb-16 reveal-on-scroll">How Trashmail.in Protects You</h2><div class="grid grid-cols-1 md:grid-cols-3 gap-8"><div class="clay-card p-8 reveal-on-scroll"><div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6 text-2xl">🔒</div><h3 class="text-xl font-bold mb-3">Secure Connections (TLS/SSL)</h3><p class="text-sm text-gray-500">All connections to Trashmail.in are encrypted via TLS. This ensures that no one on your network can snoop on your incoming temporary emails, keeping your communication private.</p></div><div class="clay-card p-8 reveal-on-scroll" style="transition-delay:0.1s;"><div class="w-14 h-14 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center mb-6 text-2xl">⚡</div><h3 class="text-xl font-bold mb-3">No Persistent Storage (RAM-Only)</h3><p class="text-sm text-gray-500">Our servers operate using ephemeral RAM storage. Once an email is deleted or expires, it is instantly overwritten, making recovery impossible and ensuring ultimate privacy.</p></div><div class="clay-card p-8 reveal-on-scroll" style="transition-delay:0.2s;"><div class="w-14 h-14 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center mb-6 text-2xl">🛡️</div><h3 class="text-xl font-bold mb-3">Malware & Tracker Shield</h3><p class="text-sm text-gray-500">We strip tracking pixels, malicious scripts, and other invasive elements from incoming emails. This protects your device from drive-by downloads and your privacy from surveillance.</p></div></div></div></section><section class="py-24 px-6" id="analysis"><div class="max-w-3xl mx-auto space-y-8 reveal-on-scroll"><h2 class="text-4xl font-bold mb-6 text-[#192132]">Understanding Temporary Email: Use Cases & Warnings</h2><p class="text-lg text-gray-700 leading-relaxed">Many wonder about the safety of temporary email. The key is understanding its purpose: maximizing privacy while acknowledging its limitations for critical, long-term accounts.</p><h3 class="text-2xl font-bold text-purple-700 mt-8">When It's a Privacy Powerhouse</h3><p class="text-gray-600 leading-relaxed">For safeguarding your privacy, temporary email is superior to standard providers like Gmail or Outlook. These services often analyze your data for advertising, unlike Trashmail.in, which operates with a strict no-logs policy, ensuring your identity remains unknown.</p><h3 class="text-2xl font-bold text-red-600 mt-8">When NOT to Use Temporary Email</h3><p class="text-gray-600 leading-relaxed">Crucially, temporary email is <strong>NOT</strong> suitable for sensitive, long-term accounts such as banking, healthcare, or primary social media. Its disposable nature means you cannot regain access if you lose the address, making password resets impossible for critical services.</p><blockquote class="border-l-4 border-[#ff4d12] pl-6 py-2 my-8 text-xl font-light italic text-gray-800"><p>"Use your temporary email for everything non-essential, and reserve your primary email for truly important, long-term accounts."</p></blockquote></div></section><section class="py-12 bg-[#192132] text-white overflow-hidden transform -skew-y-2"><div class="marquee-container"><div class="marquee-content text-4xl font-extrabold uppercase tracking-widest opacity-80">• Zero Logs • No Tracking • Anti-Spam • Anonymous • Encrypted • Free Forever • Trashmail.in • Zero Logs • No Tracking • Anti-Spam • Anonymous • Encrypted • Free Forever • Trashmail.in</div></div></section><section class="py-24 px-6"><div class="max-w-5xl mx-auto flex flex-col lg:flex-row gap-12 items-center reveal-on-scroll"><div class="lg:w-1/2"><h2 class="text-3xl font-bold mb-4">The Cost of Sharing Your Real Email</h2><p class="text-gray-600 mb-6">Witness the dramatic difference in spam accumulation between your real inbox and a disposable Trashmail.in address over just one year.</p><p><button class="clay-btn primary px-6 py-3" onclick="simulateSpam()">Start Spam Protection</button></p></div><div class="lg:w-1/2 w-full"><div class="clay-card p-6 h-[400px] flex items-end justify-around relative overflow-hidden"><div class="absolute inset-0 border-b border-gray-200" style="bottom:25%;"> </div><div class="absolute inset-0 border-b border-gray-200" style="bottom:50%;"> </div><div class="absolute inset-0 border-b border-gray-200" style="bottom:75%;"> </div><div class="w-24 bg-green-400 rounded-t-xl relative transition-all duration-1000 flex items-end justify-center group" style="height:10%;" id="barTrashmail"><p><span class="mb-2 text-white font-bold drop-shadow-md">Low</span></p><div class="absolute -top-10 text-gray-500 text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">~50 Emails</div></div><div class="w-24 bg-red-400 rounded-t-xl relative transition-all duration-1000 flex items-end justify-center group" style="height:20%;" id="barReal"><p><span class="mb-2 text-white font-bold drop-shadow-md">High</span></p><div class="absolute -top-10 text-red-500 text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity">~15,000+</div></div><div class="absolute bottom-2 left-0 w-full flex justify-around text-xs font-bold text-gray-400 uppercase"><span>With Trashmail</span> <span>Real Email</span></div></div></div></div></section><section class="py-24 px-6 bg-white"><div class="max-w-6xl mx-auto"><h2 class="text-4xl font-bold text-center mb-16 reveal-on-scroll">Your Go-To Guide: When to Use a Temporary Email</h2><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"><div class="clay-card p-6 reveal-on-scroll hover:bg-purple-50 transition-colors"><h3 class="text-lg font-bold text-purple-700 mb-2">Public Wi-Fi Sign-ups</h3><p class="text-sm text-gray-600">Airports, cafes, and hotels often demand an email to connect. Use a temporary address to avoid giving them your real one and receiving endless promotions.</p></div><div class="clay-card p-6 reveal-on-scroll hover:bg-purple-50 transition-colors" style="transition-delay:0.1s;"><h3 class="text-lg font-bold text-purple-700 mb-2">Gated Content & Downloads</h3><p class="text-sm text-gray-600">Downloading an e-book, whitepaper, or free resource? Get the content you need without signing up for a lifetime of unwanted newsletters.</p></div><div class="clay-card p-6 reveal-on-scroll hover:bg-purple-50 transition-colors" style="transition-delay:0.2s;"><h3 class="text-lg font-bold text-purple-700 mb-2">Testing New Services</h3><p class="text-sm text-gray-600">Trying out a new app, website, or online tool? Use a disposable email to test functionality without revealing your identity or risking data exposure.</p></div><div class="clay-card p-6 reveal-on-scroll hover:bg-purple-50 transition-colors" style="transition-delay:0.3s;"><h3 class="text-lg font-bold text-purple-700 mb-2">One-Time Deals & Offers</h3><p class="text-sm text-gray-600">Want that "10% off your first order" coupon? Grab the discount code using a temporary email and skip the subsequent marketing bombardment.</p></div></div></div></section><section class="py-24 px-6 bg-[#f9f9f9]"><div class="max-w-4xl mx-auto reveal-on-scroll"><div class="clay-card p-8 overflow-hidden"><figure class="table"><table class="w-full text-left border-collapse"><thead><tr><th class="p-4 text-gray-400 font-normal">Criteria</th><th class="p-4 text-purple-600 font-bold text-lg">Trashmail.in</th><th class="p-4 text-gray-600 font-bold">Your Primary Email</th></tr></thead><tbody class="text-sm text-gray-700"><tr class="border-b border-gray-100"><td class="p-4 font-semibold">Anonymity</td><td class="p-4 text-green-500 font-bold">100%</td><td class="p-4 text-red-400">0%</td></tr><tr class="border-b border-gray-100"><td class="p-4 font-semibold">Cost</td><td class="p-4 text-green-500 font-bold">Free</td><td class="p-4">Free (Your Data is the Cost)</td></tr><tr class="border-b border-gray-100"><td class="p-4 font-semibold">Spam Protection</td><td class="p-4 text-green-500 font-bold">Absolute</td><td class="p-4 text-yellow-500">Filters Only</td></tr><tr><td class="p-4 font-semibold">Setup Time</td><td class="p-4 text-green-500 font-bold">0 Seconds</td><td class="p-4">2-5 Minutes</td></tr></tbody></table></figure></div></div></section><section class="py-24 px-6 bg-white relative"><div class="absolute right-0 top-20 w-64 h-64 bg-purple-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50"> </div><div class="max-w-4xl mx-auto text-center reveal-on-scroll"><h2 class="text-3xl font-bold mb-10">Maximize Your Online Anonymity</h2><p class="text-gray-600 mb-8">Configure your personal privacy shield to understand different levels of protection.</p><div class="clay-card p-8 md:p-12 inline-block w-full text-left"><div class="flex flex-col md:flex-row justify-between items-center gap-10"><div class="space-y-4 w-full md:w-1/2"><label class="flex items-center gap-4 cursor-pointer p-4 rounded-xl hover:bg-gray-50 transition"><input class="w-6 h-6 text-purple-600 accent-purple-600 rounded focus:ring-purple-500" type="checkbox" onchange="updateShield()" checked="" disabled=""> <span class="font-bold text-gray-700">Use Trashmail.in (Essential)</span></label> <label class="flex items-center gap-4 cursor-pointer p-4 rounded-xl hover:bg-gray-50 transition"><input class="w-6 h-6 accent-purple-600" type="checkbox" id="shieldVPN" onchange="updateShield()"> <span class="font-bold text-gray-700">Add a VPN Service</span></label> <label class="flex items-center gap-4 cursor-pointer p-4 rounded-xl hover:bg-gray-50 transition"><input class="w-6 h-6 accent-purple-600" type="checkbox" id="shieldBrowser" onchange="updateShield()"> <span class="font-bold text-gray-700">Use Privacy Browser (e.g., Brave)</span></label></div><div class="w-full md:w-1/2 flex flex-col items-center"><div class="relative w-40 h-40"><svg class="w-full h-full transform -rotate-90"><circle cx="80" cy="80" r="70" stroke="#f0f0f0" stroke-width="12" fill="transparent"></circle><circle class="transition-all duration-700" id="shieldCircle" cx="80" cy="80" r="70" stroke="#793ef1" stroke-width="12" fill="transparent" stroke-dasharray="440" stroke-dashoffset="300" stroke-linecap="round"></circle></svg><div class="absolute inset-0 flex items-center justify-center flex-col"><span class="text-4xl font-extrabold text-[#192132]" id="shieldPercent">33%</span> <span class="text-xs text-gray-400 uppercase">Anonymity Score</span></div></div><p class="mt-6 text-center text-sm font-semibold text-purple-600" id="shieldMsg">Basic Protection Active</p></div></div></div></div></section><section class="py-24 px-6"><h2 class="text-center text-3xl font-bold mb-16 reveal-on-scroll">What Users Say About Digital Privacy</h2><div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"><div class="clay-card p-8 reveal-on-scroll"><div class="flex text-yellow-400 mb-4">★★★★★</div><p class="text-gray-600 italic mb-6">"I haven't received a single spam email on my main account in 6 months since I started using Trashmail for all my new sign-ups."</p><div class="flex items-center"><div class="w-10 h-10 bg-gray-300 rounded-full mr-3"> </div><div><p class="font-bold text-sm">Sarah J.</p><p class="text-xs text-gray-400">UX Designer</p></div></div></div><div class="clay-card p-8 reveal-on-scroll" style="transition-delay:0.1s;"><div class="flex text-yellow-400 mb-4">★★★★★</div><p class="text-gray-600 italic mb-6">"For developers testing new features or sign-up flows, temporary email is indispensable. Trashmail.in offers the speed and reliability needed."</p><div class="flex items-center"><div class="w-10 h-10 bg-gray-300 rounded-full mr-3"> </div><div><p class="font-bold text-sm">Mike T.</p><p class="text-xs text-gray-400">Full Stack Dev</p></div></div></div><div class="clay-card p-8 reveal-on-scroll" style="transition-delay:0.2s;"><div class="flex text-yellow-400 mb-4">★★★★★</div><p class="text-gray-600 italic mb-6">"Finally, a way to download free resources without subscribing to a newsletter I'll never read. Simple, effective, and truly private."</p><div class="flex items-center"><div class="w-10 h-10 bg-gray-300 rounded-full mr-3"> </div><div><p class="font-bold text-sm">Elena R.</p><p class="text-xs text-gray-400">Researcher</p></div></div></div></div></section><section class="py-12 px-6"><div class="max-w-4xl mx-auto text-center reveal-on-scroll"><h3 class="text-2xl font-bold mb-4">Important: A Word on Attachments & Malware</h3><p class="text-gray-600 leading-relaxed">While Trashmail.in is a powerful shield for your identity, it's crucial to exercise caution with <strong>email attachments</strong>. Always verify the source before downloading any .exe or .zip files, even when using a temporary inbox. Our service filters known malicious scripts, but your vigilance remains the ultimate defense against malware.</p></div></section><section class="py-24 px-6 bg-white"><div class="max-w-3xl mx-auto"><h2 class="text-4xl font-bold text-center mb-12 text-[#192132] reveal-on-scroll">Frequently Asked Questions</h2><div class="space-y-6"><details class="clay-card p-2 reveal-on-scroll"><summary class="font-bold text-lg p-4 text-gray-800 hover:text-purple-600 transition-colors">Is Trashmail.in truly free to use?</summary><div class="px-4 pb-4 text-gray-600 pt-2 border-t border-gray-100 mt-2">Yes, Trashmail.in is 100% free and requires no registration or payment. We are supported by minimal, non-intrusive ads, ensuring you can generate an email address instantly without any hidden costs.</div></details><details class="clay-card p-2 reveal-on-scroll"><summary class="font-bold text-lg p-4 text-gray-800 hover:text-purple-600 transition-colors">How long does a temporary email address last?</summary><div class="px-4 pb-4 text-gray-600 pt-2 border-t border-gray-100 mt-2">Your temporary email typically lasts for a specific session duration, usually a few minutes to an hour, or until you manually delete it. This ephemeral nature is key to preventing long-term spam and data retention.</div></details><details class="clay-card p-2 reveal-on-scroll"><summary class="font-bold text-lg p-4 text-gray-800 hover:text-purple-600 transition-colors">Can I retrieve emails after they've been deleted or expired?</summary><div class="px-4 pb-4 text-gray-600 pt-2 border-t border-gray-100 mt-2">No, once an email is deleted or expires from your temporary inbox, it is permanently gone and cannot be recovered. This strict policy is fundamental to our privacy promise, ensuring no historical data is stored.</div></details><details class="clay-card p-2 reveal-on-scroll"><summary class="font-bold text-lg p-4 text-gray-800 hover:text-purple-600 transition-colors">Is it legal to use a temporary email address?</summary><div class="px-4 pb-4 text-gray-600 pt-2 border-t border-gray-100 mt-2">Absolutely, using a temporary email address is completely legal and a recognized practice for protecting your online privacy. There are no laws prohibiting the use of disposable email for sign-ups, verification, or avoiding spam.</div></details><details class="clay-card p-2 reveal-on-scroll"><summary class="font-bold text-lg p-4 text-gray-800 hover:text-purple-600 transition-colors">Does Trashmail.in hide my IP address from senders?</summary><div class="px-4 pb-4 text-gray-600 pt-2 border-t border-gray-100 mt-2">Trashmail.in does not reveal your IP address to the senders of emails you receive. For a complete shield of your online identity and location, we highly recommend combining Trashmail.in with a reputable VPN service.</div></details><details class="clay-card p-2 reveal-on-scroll"><summary class="font-bold text-lg p-4 text-gray-800 hover:text-purple-600 transition-colors">Can I send emails using my temporary Trashmail.in address?</summary><div class="px-4 pb-4 text-gray-600 pt-2 border-t border-gray-100 mt-2">Trashmail.in is designed primarily for <strong>receiving</strong> emails, making it ideal for verifications and one-time communications. Sending capabilities are intentionally restricted to prevent misuse and spam generation from our service.</div></details><details class="clay-card p-2 reveal-on-scroll"><summary class="font-bold text-lg p-4 text-gray-800 hover:text-purple-600 transition-colors">Does Trashmail.in collect or sell my personal data?</summary><div class="px-4 pb-4 text-gray-600 pt-2 border-t border-gray-100 mt-2">No, we do not collect any personal data from our users, nor do we sell any information. Since Trashmail.in requires no registration, we have no personal data to store or share, upholding our commitment to your anonymity.</div></details><details class="clay-card p-2 reveal-on-scroll"><summary class="font-bold text-lg p-4 text-gray-800 hover:text-purple-600 transition-colors">Should I use a temporary email for social media accounts like Facebook or Twitter?</summary><div class="px-4 pb-4 text-gray-600 pt-2 border-t border-gray-100 mt-2">You *can* use it for initial sign-ups to platforms like Facebook or Twitter to protect your primary email. However, be aware that if these platforms ever require re-verification or password resets, you may lose access to your account since the temporary email will be gone.</div></details><details class="clay-card p-2 reveal-on-scroll"><summary class="font-bold text-lg p-4 text-gray-800 hover:text-purple-600 transition-colors">Does temporary email protect me from email viruses and malware?</summary><div class="px-4 pb-4 text-gray-600 pt-2 border-t border-gray-100 mt-2">Trashmail.in actively strips known tracking pixels and malicious executable scripts from incoming email content before it reaches your inbox. While this provides a strong layer of defense, always exercise caution and scan any attachments you choose to download from unknown or suspicious sources.</div></details></div></div></section><section class="py-32 px-6 bg-[#192132] relative overflow-hidden text-center"><div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none"><div class="absolute top-10 left-10 w-64 h-64 bg-purple-500 rounded-full blur-3xl"> </div><div class="absolute bottom-10 right-10 w-64 h-64 bg-orange-500 rounded-full blur-3xl"> </div></div><div class="max-w-4xl mx-auto relative z-10 reveal-on-scroll"><h2 class="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight">Protect Your Inbox. Reclaim Your Privacy.</h2><p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">Stop the spam, block the trackers, and prevent data leaks. Secure your digital interactions instantly with Trashmail.in.</p><p><a class="clay-btn cta px-12 py-5 text-xl hover:scale-105 transform transition-transform" target="_blank" rel="noopener noreferrer" href="https://trashmail.in">Get Your Disposable Email Now</a></p><p class="mt-8 text-gray-500 text-sm">No credit card required. Instant access.</p></div></section><script>
+        // --- 1. INTERSECTION OBSERVER (SCROLL REVEAL) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+                observer.observe(el);
+            });
+        });
+        // --- 2. WIDGET 1: RISK CALCULATOR ---
+        const hoursInput = document.getElementById('hoursInput');
+        const signupsInput = document.getElementById('signupsInput');
+        const riskScore = document.getElementById('riskScore');
+        const riskText = document.getElementById('riskText');
+        const hoursVal = document.getElementById('hoursVal');
+        const signupsVal = document.getElementById('signupsVal');
+        function updateRisk() {
+            const h = parseInt(hoursInput.value);
+            const s = parseInt(signupsInput.value);
+            
+            hoursVal.textContent = h + (h === 16 ? '+' : '') + ' interactions';
+            signupsVal.textContent = s + (s === 50 ? '+' : '');
+            // Simple Algo: (Hours * 2) + Signups
+            let risk = (h * 2.5) + (s * 1.2);
+            if (risk > 99) risk = 99;
+            if (risk < 10) risk = 10;
+            
+            risk = Math.round(risk);
+            riskScore.textContent = risk + '%';
+            if(risk < 30) {
+                riskScore.style.color = '#4ade80'; // Green
+                riskText.textContent = "Low risk. Your inbox is well-protected.";
+            } else if (risk < 70) {
+                riskScore.style.color = '#facc15'; // Yellow
+                riskText.textContent = "Moderate risk. Using a temporary email significantly reduces this.";
+            } else {
+                riskScore.style.color = '#ef4444'; // Red
+                riskText.textContent = "CRITICAL. Your real email is highly exposed to spam and threats.";
+            }
+        }
+        hoursInput.addEventListener('input', updateRisk);
+        signupsInput.addEventListener('input', updateRisk);
+        updateRisk(); // Initialize on load
+
+        // --- 3. WIDGET 2: SPAM SIMULATOR ---
+        function simulateSpam() {
+            const barReal = document.getElementById('barReal');
+            const barTrashmail = document.getElementById('barTrashmail');
+            
+            // Reset
+            barReal.style.height = '20%';
+            barReal.querySelector('span').textContent = 'High';
+            barReal.querySelector('div').textContent = '~15,000+ Emails';
+            barTrashmail.style.height = '10%';
+            barTrashmail.querySelector('span').textContent = 'Low';
+            barTrashmail.querySelector('div').textContent = '~50 Emails';
+            
+            // Animate
+            setTimeout(() => {
+                barReal.style.height = '95%';
+                barReal.querySelector('span').textContent = 'CRITICAL';
+                barReal.querySelector('div').textContent = '~15,000+ Emails';
+                
+                barTrashmail.style.height = '12%'; // Stays low
+                barTrashmail.querySelector('span').textContent = 'Safe';
+                barTrashmail.querySelector('div').textContent = '~50 Emails';
+            }, 100);
+        }
+        // --- 4. WIDGET 3: PRIVACY SHIELD ---
+        function updateShield() {
+            const vpn = document.getElementById('shieldVPN').checked;
+            const browser = document.getElementById('shieldBrowser').checked;
+            const shieldCircle = document.getElementById('shieldCircle');
+            const shieldPercent = document.getElementById('shieldPercent');
+            const shieldMsg = document.getElementById('shieldMsg');
+            let score = 33; // Base score for using Trashmail
+            if (vpn) score += 33;
+            if (browser) score += 34;
+            shieldPercent.textContent = score + '%';
+            
+            // SVG dasharray calculation (circumference approx 440)
+            // Offset = 440 - (440 * percent / 100)
+            const offset = 440 - (440 * score / 100);
+            shieldCircle.style.strokeDashoffset = offset;
+            if(score < 50) {
+                shieldMsg.textContent = "Basic Protection Active";
+                shieldMsg.className = "mt-6 text-center text-sm font-semibold text-purple-600";
+            } else if (score < 90) {
+                shieldMsg.textContent = "Enhanced Privacy Shield";
+                shieldMsg.className = "mt-6 text-center text-sm font-semibold text-orange-500";
+            } else {
+                shieldMsg.textContent = "ULTIMATE GHOST MODE ENABLED";
+                shieldMsg.className = "mt-6 text-center text-sm font-bold text-green-500 tracking-widest";
+            }
+        }
+        updateShield(); // Initialize on load
+
+        // --- 5. PARALLAX EFFECT FOR BLOBS ---
+        document.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const blobs = document.querySelectorAll('.blob');
+            blobs.forEach((blob, index) => {
+                const speed = index % 2 === 0 ? 0.1 : -0.1;
+                blob.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script></body></html>
